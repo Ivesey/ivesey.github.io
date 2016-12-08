@@ -9,3 +9,11 @@ github_username:  Ivesey
 
 # Build settings
 markdown: kramdown
+
+collections:
+  my_categories:
+    output: true
+    permalink: /blog/category/:name/
+  my_tags:
+    output: true
+    permalink: /blog/tag/:name/

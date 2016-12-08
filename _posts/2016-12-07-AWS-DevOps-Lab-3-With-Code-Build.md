@@ -1,13 +1,15 @@
 ---
 layout: post
-title:  "DevOps Engineering v1.5 Alternative Lab 3 Using Code Build"
+title:  DevOps Engineering v1.5 Alternative Lab 3 Using Code Build
+subtitle: Replace Jenkins with CodeBuild
 date:   2016-12-07
-categories: lab-guides devops code-build
+category: training
+tags: [lab-guides, devops, codebuild]
 ---
-# DevOps Engineering v1.5 Alternative Lab 3 Using Code Build
 
 ## Task 0: Give yourself permissions
 You aren't explicitly denied access to CodeBuild in this lab, but because the IAM policy predates CodeBuild, you aren't explicitly allowed permission either, so you're _implicitly_ denied access. This procedure, not to be performed in the real world, is the easiest way around the problem (but not the correct way around it).
+
 1. Go into the IAM console.
 1. Choose "users" in the Navigation section.
 1. Click on "awsstudent" in the list of users.
@@ -30,6 +32,7 @@ Still need to do all this
 
 ## Task 1.4 - Configure a CodeBuild project
 So we're going to ditch Jenkins like a bad date.
+
 1. Go into the CodeBuild console
 1. Click the "Get started" button. If there isn't one, click the "Create Project" button.
 1. Configure your Project, using the following settings:
@@ -50,6 +53,7 @@ So we're going to ditch Jenkins like a bad date.
 The auto-generated CodeBuild role won't have permissions to validate your template, so it will fail to fail correctly (yes we are expecting it to fail first time around...), so you'll need to give it permissions.
 
 Again, we'll do it the easy way rather than the right way.
+
 1. Go into the IAM console.
 1. Choose "Roles" in the Navigation section.
 1. Click on "codebuild-_project-name_-service-role" in the list of roles (replace _project-name_).
@@ -59,6 +63,7 @@ Again, we'll do it the easy way rather than the right way.
 1. Click the "AttachPolicy" button.
 
 ## Task 1.4.4 - Set up support for CodeBuild
+
 1. Create a "buildspec.yml" file in the root of your repo (/opt/git/ci-project)
   - You could try ```touch ./buildspec.yml```
 1. Copy the contents of the ["lab-3-ci-buildspec.yml"](lab-3-ci-buildspec.yml) file into it
@@ -73,6 +78,7 @@ Again, we'll do it the easy way rather than the right way.
 
 ## Task 1.4.5 - Submit a Build
 We'll now attempt to build the newWidget branch.
+
 1. In the CodeBuild console's navigation pane, select "Build projects"
 1. With your Lab3Project selected, click the "Start build" button.
 1. In the "Start new build" wizard, accept all of the defaults except for:
@@ -81,17 +87,19 @@ We'll now attempt to build the newWidget branch.
 
 ## Task 1.5 - Validate and repair
 You'll note that, unlike with the official lab instructions, your build is not running automatically. This is because the glue that binds Jenkins and CodeCommit is Jenkins, and we're not using Jenkins any more. The solution in this case is to use CodePipeline, but as we haven't covered that service yet, I've left those instructions out. In the meantime, feel free to try and set it up yourself _once you've got the standard lab working_.
+
 1. Check the build progress of your CodeBuild project.
 1. After a couple of minutes, it should move into a "Failed" state.
 1. The build logs might show you the problem, but more likely you'll need to click on the "View entire log" link to get to the bottom of things. This will open a new console windows showing you the CloudWatch logs for your project.
 1. Around half-way down, you should see an entry beginning with "An error occurred (ValidationError)..."
   - expand that entry to observe the text:
-  - [Container] 2016/12/05 16:44:42 An error occurred (ValidationError) when calling the ValidateTemplate operation: Template error: resource TestWebInstance does not support attribute type __PublicIpAddress__ in __Fn::GetAtt__
-1. To correct the issue, follow steps 1.5.4 to 1.5.11 (inclusive) from the Lab Guide, and then re-submit the build job as per Task 1.4.5 of this guide.
+  - [Container] yyyy/MM/dd hh:mm:ss An error occurred (ValidationError) when calling the ValidateTemplate operation: Template error: resource TestWebInstance does not support attribute type __PublicIpAddress__ in __Fn::GetAtt__
+1. To correct the issue, follow steps 1.5.4 to 1.5.11 (inclusive) from the official Lab Guide, and then re-submit the build job as per Task 1.4.5 of this guide.
 1. After a few minutes, the build should have succeeded! Yay!
 
 ## Task 1.6 - Merge, Validate, Deploy
 The newWidget seems to work, so we need to create a new CodeBuild project for the master branch, merge our changes with that branch and then kick off another build. Again, we could integrate all of this with CodePipeline and that should be the goal...
+
 1. Go to the CloudFormation console, select your qwiklab stack and find the Resource whose Logical ID is "WebInstanceEC2InstanceProfile". It should be down towards the bottom of the list.
   1. Copy its Physical Id into a handy text file.
   1. It should look something like "qls-12345-0123456789abcdef-WebInstanceEC2InstanceProfile-12345ABCDE"
@@ -136,6 +144,7 @@ Head back to your SSH session from earlier (you should still be seeing the resul
   - ```git push origin master```
 
 ## Task 1.6.2 - Validate and Deploy
+
 1. In the CodeBuild console, manually build the project (choosing the ```master``` branch)
 1. After a while, the build process should have emitted a log entry with the URL of your application.
 1. Browse to that URL.
