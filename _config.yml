@@ -1,15 +1,16 @@
 # Site settings
-title: Blogging's The Dot Game
+title: It's my blog
 email: your-email@domain.com
 description: > # Stuff I think might be worth writing about
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "blog.dansthe.name" # the base hostname & protocol for your site
 twitter_username: null
 github_username:  Ivesey
 
 # Build settings
 markdown: kramdown
 
+# Customer collections
 collections:
   my_categories:
     output: true
