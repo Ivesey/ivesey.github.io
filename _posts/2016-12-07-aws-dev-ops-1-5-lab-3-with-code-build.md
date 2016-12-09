@@ -23,12 +23,12 @@ You aren't explicitly denied access to CodeBuild in this lab, but because the IA
 Still need to do all this as per the Lab Guide.
 
 ## Task 1.2
-__NOTE:__ If you're using Windows, it is very important that you follow the instructions in Appendix A to connect to your instance. If you're using Putty, it is vital that you use Pageant to manage your keys and that you enable Agent Forwarding. If you don't, this step will go horribly wrong and basically it's a case of ENDing the lab and then STARTing it all over again. _Alternatively_, you could download and install [GitBash]('https://git-for-windows.github.io/') and simply do `ssh -A -i path/to/pem ec2-user@public.ip.address`
+__NOTE:__ If you're using Windows, it is very important that you follow the instructions in Appendix A to connect to your instance. If you're using Putty, it is vital that you use Pageant to manage your keys and that you enable Agent Forwarding. If you don't, this step will go horribly wrong and basically it's a case of ENDing the lab and then STARTing it all over again. _Alternatively_, you could download and install [GitBash](https://git-for-windows.github.io/) and simply do `ssh -A -i path/to/pem ec2-user@public.ip.address`
 
 Still need to do all this as per the Lab Guide.
 
 ## Task 1.3
-Still need to do all this
+Still need to do all this as per the Lab Guide.
 
 ## Task 1.4 - Configure a CodeBuild project
 So we're going to ditch Jenkins like a bad date.
@@ -65,16 +65,16 @@ Again, we'll do it the easy way rather than the right way.
 ## Task 1.4.4 - Set up support for CodeBuild
 
 1. Create a "buildspec.yml" file in the root of your repo (/opt/git/ci-project)
-  - You could try ```touch ./buildspec.yml```
+  - You could try `touch ./buildspec.yml`
 1. Copy the contents of the ["lab-3-ci-buildspec.yml"](/assets/2016-12-07/lab-3-ci-buildspec.yml.txt) file into it
-  - __NOTE:__ if you are not running in us-east-1 (Virginia), you may need to update the ```environment_variables:``` section of the buildspec file appropriately.
+  - __NOTE:__ if you are not running in us-east-1 (Virginia), you may need to update the `environment_variables:` section of the buildspec file appropriately.
 1. Copy the contents of the ["lab-3-ci-simple-test.sh"](/assets/2016-12-07/lab-3-ci-simple-test.sh.txt) file into a file of the same name in the root of your repo.
 1. Execute the following command to make it executable:
-  - ```chmod +x ./lab-3-ci-simple-test.sh```
+  - `chmod +x ./lab-3-ci-simple-test.sh`
 1. Execute the following commands to push the new files into your CodeCommit repo:
-  - ```git add .```This is all going to be a bit different to the Lab Guide instructions as
-  - ```git commit -m "added support for CodeBuild"```
-  - ```git push origin newWidget```
+  - `git add .`
+  - `git commit -m "added support for CodeBuild"`
+  - `git push origin newWidget`
 
 ## Task 1.4.5 - Submit a Build
 We'll now attempt to build the newWidget branch.
@@ -112,7 +112,7 @@ The newWidget seems to work, so we need to create a new CodeBuild project for th
   - Select your repo name from the drop-down list
   - Use the Ubuntu image and the Base runtime, v 14.04
   - In _Build specification_, change the radio button to "Insert build commands"
-  - Use the following command: ```/bin/bash ./lab-3-ci-job-script.sh```
+  - Use the following command: `/bin/bash ./lab-3-ci-job-script.sh`
   - No artifacts
   - Choose the previously-generated service role from your account (there should only be one item in the drop-down list)
 1. Now expand the "Show advanced settings" section
@@ -131,21 +131,21 @@ That script we told CodeBuild to use doesn't exist yet. We'll need to create it 
 Head back to your SSH session from earlier (you should still be seeing the results of your previous push to newWidget).
 
 1. Execute the following two commands (from 1.6.16 and 1.6.17 in the Lab Guide):
-  - ```git checkout master```
-  - ```git merge newWidget```
+  - `git checkout master`
+  - `git merge newWidget`
 1. Copy the contents of the ["lab-3-ci-job-script.sh"](/assets/2016-12-07/lab-3-ci-job-script.sh.txt) file into a file of the same name in the root of your repo.
 1. Execute the following command to make the script executable:
-  - ```chmod +x ./lab-3-ci-job-script.sh```
+  - `chmod +x ./lab-3-ci-job-script.sh`
 1. Add the file to git:
-  - ```git add ./lab-3-job-script.sh```
+  - `git add ./lab-3-job-script.sh`
 1. Commit the changes:
-  - ```git commit -m "added build script"```
+  - `git commit -m "added build script"`
 1. And push to master:
-  - ```git push origin master```
+  - `git push origin master`
 
 ## Task 1.6.2 - Validate and Deploy
 
-1. In the CodeBuild console, manually build the project (choosing the ```master``` branch)
+1. In the CodeBuild console, manually build the project (choosing the `master` branch)
 1. After a while, the build process should have emitted a log entry with the URL of your application.
 1. Browse to that URL.
 1. You're done!
