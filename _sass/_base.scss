@@ -202,3 +202,13 @@ pre {
         }
     }
 }
+
+.mbtablestyle {
+        border-collapse: collapse;
+        margin-left: 5px;
+        margin-right: 5px;
+        
+   > table, td, th {
+        border: 1px solid black;
+        }
+}
