@@ -9,6 +9,16 @@ tags: [cloudformation, yaml]
 
 [Originally posted on qa.com](https://www.qa.com/blogs/converting-cloudformation-json-templates-into-yaml 'Original post'). Reposted here because frankly, it's easier for me to update it and Jekyll makes code snippets look good.
 
+## TL;DR Files:
+
+[Original JSON template](/assets/2016-12-13/SomeJSONTemplate.template)
+
+[YAML version](/assets/2016-12-13/SomeJSONTemplate.yaml)
+
+[Minimal YAML version](/assets/2016-12-13/SomeJSONTemplate.min.yaml)
+
+## Preamble
+
 Ever since YAML support in CloudFormation (hereafter referred to as 'CFn') templates was announced, I've developed a new hobby: converting templates from JSON to YAML.
 
 Delegates keep asking me why I'm so excited about YAML in CFn and the simple answer is that it's easier for humans to read, and you can put comments in more easily. But the more complex answer is that it's also easier for humans to write and that user-data is so much clearer now.
