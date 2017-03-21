@@ -482,13 +482,13 @@ Resources:
               command: !Sub
                 mysqladmin -u root password '${DBRootPassword}'
               test: !Sub >
-                $(mysql '${DBName}' -u root --password='${DBRootPassword}'
+                $(mysql '${DBName}' -u root --password='${DBRootPassword}' \
                 >/dev/null 2>&1 </dev/null); (( $? != 0 ))
             02_create_database:
               command: !Sub
                 mysql -u root --password='${DBRootPassword}' < /tmp/setup.mysql
               test: !Sub >
-                $(mysql '${DBName}' -u root --password='${DBRootPassword}'
+                $(mysql '${DBName}' -u root --password='${DBRootPassword}' \
                 >/dev/null 2>&1 </dev/null); (( $? != 0 ))
             03_configure_wordpress:
               command: /tmp/create-wp-config

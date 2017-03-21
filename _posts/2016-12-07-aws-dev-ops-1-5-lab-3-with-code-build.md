@@ -93,7 +93,7 @@ You'll note that, unlike with the official lab instructions, your build is not r
 1. The build logs might show you the problem, but more likely you'll need to click on the "View entire log" link to get to the bottom of things. This will open a new console windows showing you the CloudWatch logs for your project.
 1. Around half-way down, you should see an entry beginning with "An error occurred (ValidationError)..."
   - expand that entry to observe the text:
-  - [Container] yyyy/MM/dd hh:mm:ss An error occurred (ValidationError) when calling the ValidateTemplate operation: Template error: resource TestWebInstance does not support attribute type __PublicIpAddress__ in __Fn::GetAtt__
+  - [Container] yyyy/MM/dd hh:mm:ss An error occurred (ValidationError) when calling the ValidateTemplate operation: Template error: resource TestWebInstance does not support attribute type __PublicIpAddress__ in __Fn::GetAtt__ ?????
 1. To correct the issue, follow steps 1.5.4 to 1.5.11 (inclusive) from the official Lab Guide, and then re-submit the build job as per Task 1.4.5 of this guide.
 1. After a few minutes, the build should have succeeded! Yay!
 
@@ -103,8 +103,8 @@ The newWidget seems to work, so we need to create a new CodeBuild project for th
 1. Go to the CloudFormation console, select your qwiklab stack and find the Resource whose Logical ID is "WebInstanceEC2InstanceProfile". It should be down towards the bottom of the list.
   1. Copy its Physical Id into a handy text file.
   1. It should look something like "qls-12345-0123456789abcdef-WebInstanceEC2InstanceProfile-12345ABCDE"
-  1. I'll refer to this as "_WebProfile_" later on
-1. Do the same thing for the s3ArtifactBucket. I'll refer to that as "_S3Bucket_" later on.
+  1. I'll refer to this as "_WebProfile_" later on.
+1. Copy the Physical Id for the s3ArtifactBucket resource. I'll refer to that as "_S3Bucket_" later on.
 1. Now go to the "Parameters" tab and copy the Value of the KeyName into your text file. This will be known as "_KeyName_".
 1. Create a new CodeBuild project.
   - Call it Lab3DeployStaging (or whatever else you'd like to call it).
@@ -121,9 +121,9 @@ The newWidget seems to work, so we need to create a new CodeBuild project for th
 Name | Value
 ---- | ---------
 REGION | us-east-1
-KEYNAME | _KeyName_
-ARTIFACT_BUCKET | _S3Bucket_
-WEBInstanceROLE | _WebProfile_
+KEYNAME | Paste the  _KeyName_ value in here
+ARTIFACT_BUCKET | Paste the _S3Bucket_ value in here
+WEBInstanceROLE | Paste the _WebProfile_ value in here
 
 ## Task 1.6.1 - Merge
 That script we told CodeBuild to use doesn't exist yet. We'll need to create it and make it executable. But we don't need it in the newWidget branch, only in the master. So we'll switch back to the master branch, merge our changes, and then create the file, push the new version and then manually build it using CodeBuild (again, CodePipeline would do this automatically for us).
