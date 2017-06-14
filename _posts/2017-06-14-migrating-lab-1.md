@@ -7,6 +7,7 @@ category: aws
 ---
 
 ### Copy-and-pastable bash scripts
+#### No warranties express or implied...
 
 1.2.3:  
 
