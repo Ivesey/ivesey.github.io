@@ -126,6 +126,7 @@ ARTIFACT_BUCKET | Paste the _S3Bucket_ value in here
 WEBInstanceROLE | Paste the _WebProfile_ value in here
 {:.mbtablestyle}
 
+
 ## Task 1.6.1 - Merge
 That script we told CodeBuild to use doesn't exist yet. We'll need to create it and make it executable. But we don't need it in the newWidget branch, only in the master. So we'll switch back to the master branch, merge our changes, and then create the file, push the new version and then manually build it using CodeBuild (again, CodePipeline would do this automatically for us).
 
