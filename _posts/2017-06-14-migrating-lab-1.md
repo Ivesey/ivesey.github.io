@@ -3,7 +3,8 @@ layout: post
 title:  Bash scripts for Lab 1 of Migrating to AWS
 subtitle: A more bash-y approach
 date:   2017-06-14
-category: aws
+category: training
+tags: [labguides, migrating, ads]
 ---
 
 ### Copy-and-pastable bash scripts
@@ -56,8 +57,7 @@ MYSQL=$(aws discovery list-configurations --configuration-type PROCESS --filters
 But they told us to get AgentIds, not config ids!
 
 ``
-NGINXIDS=$(aws discovery list-configurations --configuration-type PROCESS --filters name="proc
-ess.name",values="nginx",condition="CONTAINS" --query configurations[].\"server.configurationId\" --output text)
+NGINXIDS=$(aws discovery list-configurations --configuration-type PROCESS --filters name="process.name",values="nginx",condition="CONTAINS" --query configurations[].\"server.configurationId\" --output text)
 ``
 
 ``
