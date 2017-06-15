@@ -4,7 +4,7 @@ title:  Converting CloudFormation JSON templates into YAML
 subtitle: And making them look good
 date:   2016-12-13
 category: aws
-tags: [cloudformation, yaml]
+tags: [cfn, yaml]
 ---
 
 [Originally posted on qa.com](https://www.qa.com/blogs/converting-cloudformation-json-templates-into-yaml 'Original post'). Reposted here because frankly, it's easier for me to update it and Jekyll makes code snippets look good.

@@ -1,5 +1,5 @@
 ---
 layout: default
 slug: migrating
-name: Migrating
+name: Migrating to AWS
 ---

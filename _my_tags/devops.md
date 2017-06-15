@@ -1,5 +1,5 @@
 ---
 layout: default
 slug: devops
-name: DevOps
+name: DevOps Engineering on AWS
 ---

@@ -1,5 +1,5 @@
 ---
 layout: default
-slug: cloudformation
-name: CloudFormation
+slug: cfn
+name: AWS CloudFormation
 ---
