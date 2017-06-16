@@ -11,6 +11,8 @@ tags: [labguides, migrating, ads]
 
 #### No warranties express or implied...
 
+Trying to reduce the number of copies and pastes...
+
 1.2.3:  
 
 ``
