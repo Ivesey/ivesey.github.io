@@ -23,7 +23,7 @@ You aren't explicitly denied access to CodeBuild in this lab, but because the IA
 Still need to do all this as per the Lab Guide.
 
 ## Task 1.2
-__NOTE:__ If you're using Windows, it is very important that you follow the instructions in Appendix A to connect to your instance. If you're using Putty, it is vital that you use Pageant to manage your keys and that you enable Agent Forwarding. If you don't, this step will go horribly wrong and basically it's a case of ENDing the lab and then STARTing it all over again. _Alternatively_, you could download and install [GitBash](https://git-for-windows.github.io/) and simply do `ssh -A -i path/to/pem ec2-user@public.ip.address`
+__NOTE:__ If you're using Windows, it is very important that you follow the instructions in Appendix A to connect to your instance. If you're using Putty, it is vital that you use Pageant to manage your keys and that you enable Agent Forwarding. If you don't, this step will go horribly wrong and basically it's a case of ENDing the lab and then STARTing it all over again.
 
 Still need to do all this as per the Lab Guide.
 

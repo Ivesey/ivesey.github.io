@@ -8,6 +8,7 @@ tags: [labguides, migrating, ads]
 ---
 
 ### Copy-and-pastable bash scripts
+
 #### No warranties express or implied...
 
 1.2.3:  
@@ -46,6 +47,10 @@ NGINX=$(aws discovery list-configurations --configuration-type PROCESS --filters
 aws discovery list-configurations --configuration-type PROCESS --filters name="server.agentId",values=$NGINX,condition="CONTAINS"
 ``
 
+``
+NGINXIDS=$(aws discovery list-configurations --configuration-type PROCESS --filters name="process.name",values="nginx",condition="CONTAINS" --query configurations[].\"server.configurationId\" --output text)
+``
+
 1.3.6:
 
 ``
@@ -54,12 +59,14 @@ MYSQL=$(aws discovery list-configurations --configuration-type PROCESS --filters
 
 1.3.7:
 
-But they told us to get AgentIds, not config ids!
-
-``
-NGINXIDS=$(aws discovery list-configurations --configuration-type PROCESS --filters name="process.name",values="nginx",condition="CONTAINS" --query configurations[].\"server.configurationId\" --output text)
-``
+But they told us to get AgentIds in 1.3.4, not config ids! That was in 1.3.5!
 
 ``
 aws discovery create-tags --tags key=webserver,value=nginx --configuration-ids $NGINXIDS
+``
+
+1.3.8:
+
+``
+aws discovery create-tags --tags key=webserver,value=nginx --configuration-ids $MYSQL
 ``
